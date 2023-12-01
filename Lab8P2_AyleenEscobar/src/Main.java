@@ -23,8 +23,6 @@ public class Main extends javax.swing.JFrame {
         jP_Garage.setVisible(false);
         jP_VentaCarros.setVisible(false);
         jL_Iniciar.setVisible(true);
-        jB_login.setVisible(true);
-        jB_crear.setVisible(true);
         
         //carrosAgrgar();
     }
@@ -47,6 +45,10 @@ public class Main extends javax.swing.JFrame {
         jMenuItem_year = new javax.swing.JMenuItem();
         jMenuItem_precio = new javax.swing.JMenuItem();
         jMenuItem_Eliminar = new javax.swing.JMenuItem();
+        jD_Login = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jPB_Busca_user = new javax.swing.JProgressBar();
+        jLabel20 = new javax.swing.JLabel();
         jP_Inicio = new javax.swing.JPanel();
         jB_crear = new javax.swing.JButton();
         jB_login = new javax.swing.JButton();
@@ -151,6 +153,46 @@ public class Main extends javax.swing.JFrame {
         jMenuItem_Eliminar.setText("jMenuItem1");
         jPopupMenu1.add(jMenuItem_Eliminar);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("Buscando Usuario");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(jLabel20)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(48, Short.MAX_VALUE)
+                .addComponent(jPB_Busca_user, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addComponent(jLabel20)
+                .addGap(18, 18, 18)
+                .addComponent(jPB_Busca_user, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jD_LoginLayout = new javax.swing.GroupLayout(jD_Login.getContentPane());
+        jD_Login.getContentPane().setLayout(jD_LoginLayout);
+        jD_LoginLayout.setHorizontalGroup(
+            jD_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jD_LoginLayout.setVerticalGroup(
+            jD_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -203,20 +245,20 @@ public class Main extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Usuario");
-        jP_IniciarSesion.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, -1, -1));
+        jP_IniciarSesion.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Contrasena");
-        jP_IniciarSesion.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, -1, -1));
+        jP_IniciarSesion.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
 
         jPF_PasswordInicio.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
         jPF_PasswordInicio.setForeground(new java.awt.Color(0, 0, 0));
-        jP_IniciarSesion.add(jPF_PasswordInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 210, -1));
+        jP_IniciarSesion.add(jPF_PasswordInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 210, -1));
 
         jTF_usuarioInicio.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
         jTF_usuarioInicio.setForeground(new java.awt.Color(0, 0, 0));
-        jP_IniciarSesion.add(jTF_usuarioInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 210, -1));
+        jP_IniciarSesion.add(jTF_usuarioInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 210, -1));
 
         jButton7.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 24)); // NOI18N
         jButton7.setText("Entrar");
@@ -225,7 +267,7 @@ public class Main extends javax.swing.JFrame {
                 jButton7MouseClicked(evt);
             }
         });
-        jP_IniciarSesion.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, -1, -1));
+        jP_IniciarSesion.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/need-for-speed-2560x1440-mclaren.jpg"))); // NOI18N
         jP_IniciarSesion.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -591,9 +633,9 @@ public class Main extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 10, Short.MAX_VALUE)
                     .addComponent(jP_Garage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 10, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -723,38 +765,26 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         jL_edad.setVisible(false);
         jL_Iniciar.setVisible(false);
-        jP_IniciarSesion.setVisible(false);
-        jP_CrearUsuario.setVisible(false);
+        jP_CrearCuenta.setVisible(true);
         jB_login.setVisible(false);
         jB_crear.setVisible(false);
-        jP_Dentro.setVisible(false);
-        jP_Concesionaria.setVisible(false);
-        jP_Garage.setVisible(false);
-        jP_VentaCarros.setVisible(false);
-        jP_CrearCuenta.setVisible(true);
+        jL_Iniciar.setVisible(false);
     }//GEN-LAST:event_jB_crearMouseClicked
 
     private void jB_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_loginMouseClicked
         // TODO add your handling code here:
-        jL_Iniciar.setVisible(false);
-        jP_CrearUsuario.setVisible(false);
-        jP_CrearCuenta.setVisible(false);
+        jP_IniciarSesion.setVisible(true);
         jB_login.setVisible(false);
         jB_crear.setVisible(false);
-        jP_VentaCarros.setVisible(false);
-        jP_IniciarSesion.setVisible(true);
+        jL_Iniciar.setVisible(false);
     }//GEN-LAST:event_jB_loginMouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
-        jL_Iniciar.setVisible(false);
-        jP_IniciarSesion.setVisible(false);
-        jP_CrearUsuario.setVisible(false);
+        jP_Concesionaria.setVisible(true);
         jB_login.setVisible(false);
         jB_crear.setVisible(false);
-        jP_Dentro.setVisible(false);
-        jP_CrearCuenta.setVisible(false);
-        jP_Concesionaria.setVisible(true);
+        jL_Iniciar.setVisible(false);
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jCB_Carros_paisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCB_Carros_paisItemStateChanged
@@ -778,37 +808,6 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jCB_Carros_paisItemStateChanged
-
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
-        if (jTF_usuarioInicio.getText().isEmpty() || jPF_PasswordInicio.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Llene las casillas.");  
-        }else{
-            boolean siesta=false;
-            for (Usuario usuario : usuarios) {
-                if (usuario.getUsuario().equals(jTF_usuarioInicio.getText()) && usuario.getPassword().equals(jPF_PasswordInicio.getText())) {
-                   JOptionPane.showMessageDialog(this, "Bienvenido!!");
-                   usuarioEnSesion = usuario; 
-                   siesta=true;
-                   break;
-                }
-            }
-            if (siesta) {
-                jL_Iniciar.setVisible(false);
-                jP_IniciarSesion.setVisible(false);
-                jP_CrearUsuario.setVisible(false);
-                jP_CrearCuenta.setVisible(false);
-                jB_login.setVisible(false);
-                jB_crear.setVisible(false);
-                jP_Concesionaria.setVisible(false);
-                jP_Garage.setVisible(false);
-                jP_VentaCarros.setVisible(false);
-                jP_Dentro.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
-            }
-        }
-    }//GEN-LAST:event_jButton7MouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
@@ -893,16 +892,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
-    private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
-        // TODO add your handling code here:
-        VolverIncio();
-    }//GEN-LAST:event_jButton18MouseClicked
-
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-        VolverIncio();
-    }//GEN-LAST:event_jButton18ActionPerformed
-
     private void jButton19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton19MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton19MouseClicked
@@ -910,6 +899,45 @@ public class Main extends javax.swing.JFrame {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+        
+        jD_Login.setVisible(true);
+        if (jTF_usuarioInicio.getText().isEmpty() || jPF_PasswordInicio.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Llene las casillas.");
+        }else{
+            boolean siesta=false;
+            for (Usuario usuario : usuarios) {
+                if (usuario.getUsuario().equals(jTF_usuarioInicio.getText()) && usuario.getPassword().equals(jPF_PasswordInicio.getText())) {
+                    JOptionPane.showMessageDialog(this, "Bienvenido!!");
+                    usuarioEnSesion = usuario;
+                    siesta=true;
+                    break;
+                }
+            }
+            if (siesta) {
+                jB_login.setVisible(false);
+                jB_crear.setVisible(false);
+                jP_Concesionaria.setVisible(false);
+                jP_Garage.setVisible(false);
+                jP_VentaCarros.setVisible(false);
+                jP_Dentro.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+            }
+        }
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        VolverIncio();
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
+        // TODO add your handling code here:
+        VolverIncio();
+    }//GEN-LAST:event_jButton18MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1060,6 +1088,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jCB_Carros_pais;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JDialog jD_Login;
     private javax.swing.JDialog jD_Menu;
     private javax.swing.JLabel jL_Iniciar;
     private javax.swing.JLabel jL_contra;
@@ -1076,6 +1105,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1091,6 +1121,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem_precio;
     private javax.swing.JMenuItem jMenuItem_year;
     private javax.swing.JMenu jMenu_modificar;
+    private javax.swing.JProgressBar jPB_Busca_user;
     private javax.swing.JPasswordField jPF_Password;
     private javax.swing.JPasswordField jPF_PasswordInicio;
     private javax.swing.JPanel jP_Concesionaria;
@@ -1102,6 +1133,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jP_Inicio;
     private javax.swing.JPanel jP_VentaCarros;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

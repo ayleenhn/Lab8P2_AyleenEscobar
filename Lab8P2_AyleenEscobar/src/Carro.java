@@ -11,11 +11,17 @@ public class Carro {
     private String pais;
     private int year;
     private boolean Reconstruido;
+    private int horsepower;
+    private int velocidadPunta;
+    private double tiempo;
+    private Circuito circuito;
+
 
     public Carro() {
     }
 
-    public Carro(String marca, String modelo, Color color, double precio, ArrayList<String> mejorasVisuales, String pais, int year, boolean Reconstruido) {
+    public Carro(String marca, String modelo, Color color, double precio, ArrayList<String> mejorasVisuales, 
+                    String pais, int year, boolean Reconstruido, int horsepower, int velocidadPunta, double tiempo, Circuito circuito) {
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
@@ -24,6 +30,10 @@ public class Carro {
         this.pais = pais;
         this.year = year;
         this.Reconstruido = Reconstruido;
+        this.horsepower = horsepower;
+        this.velocidadPunta = velocidadPunta;
+        this.tiempo = tiempo;
+        this.circuito = circuito;
     }
 
     public String getMarca() {
@@ -90,6 +100,38 @@ public class Carro {
         this.Reconstruido = Reconstruido;
     }
 
+    public int getHorsepower() {
+        return horsepower;
+    }
+
+    public void setHorsepower(int horsepower) {
+        this.horsepower = horsepower;
+    }
+
+    public int getVelocidadPunta() {
+        return velocidadPunta;
+    }
+
+    public void setVelocidadPunta(int velocidadPunta) {
+        this.velocidadPunta = velocidadPunta;
+    }
+
+    public double getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(double tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public Circuito getCircuito() {
+        return circuito;
+    }
+
+    public void setCircuito(Circuito circuito) {
+        this.circuito = circuito;
+    }
+    
     @Override
     public String toString() {
         return "Carro{" + "marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", precio=" + precio + ", mejorasVisuales=" + mejorasVisuales + ", pais=" + pais + ", year=" + year + ", Reconstruido=" + Reconstruido + '}';

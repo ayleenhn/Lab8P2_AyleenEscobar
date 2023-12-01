@@ -26,7 +26,7 @@ public class Main extends javax.swing.JFrame {
         jB_login.setVisible(true);
         jB_crear.setVisible(true);
         
-        carrosAgrgar();
+        //carrosAgrgar();
     }
 
     /**
@@ -52,6 +52,7 @@ public class Main extends javax.swing.JFrame {
         jB_login = new javax.swing.JButton();
         jL_Iniciar = new javax.swing.JLabel();
         jP_IniciarSesion = new javax.swing.JPanel();
+        jButton18 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jPF_PasswordInicio = new javax.swing.JPasswordField();
@@ -59,6 +60,7 @@ public class Main extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jP_CrearCuenta = new javax.swing.JPanel();
+        jButton19 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -185,6 +187,19 @@ public class Main extends javax.swing.JFrame {
         jP_IniciarSesion.setBackground(new java.awt.Color(0, 0, 0));
         jP_IniciarSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton18.setText("Volver Inicio");
+        jButton18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton18MouseClicked(evt);
+            }
+        });
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+        jP_IniciarSesion.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
+
         jLabel14.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Usuario");
@@ -218,6 +233,19 @@ public class Main extends javax.swing.JFrame {
         jP_CrearCuenta.setBackground(new java.awt.Color(0, 0, 0));
         jP_CrearCuenta.setForeground(new java.awt.Color(255, 255, 255));
         jP_CrearCuenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton19.setText("Volver Inicio");
+        jButton19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton19MouseClicked(evt);
+            }
+        });
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+        jP_CrearCuenta.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -865,6 +893,24 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
+    private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
+        // TODO add your handling code here:
+        VolverIncio();
+    }//GEN-LAST:event_jButton18MouseClicked
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        VolverIncio();
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton19MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton19MouseClicked
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton19ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -948,7 +994,20 @@ public class Main extends javax.swing.JFrame {
         jListMejoras.setModel(modelo);
     }
     
-    private void carrosAgrgar() {
+    public void VolverIncio() {
+        jP_IniciarSesion.setVisible(false);
+        jP_CrearCuenta.setVisible(false);
+        jP_CrearUsuario.setVisible(false);
+        jP_Concesionaria.setVisible(false);
+        jP_Dentro.setVisible(false);
+        jP_Garage.setVisible(false);
+        jP_VentaCarros.setVisible(false);
+        jL_Iniciar.setVisible(true);
+        jB_login.setVisible(true);
+        jB_crear.setVisible(true);
+    }
+    
+    /*private void carrosAgrgar() {
         carros.add(new Carro("Subaru", "WR-X", Color.BLACK, 100, null, "Japón", 2022, false));
         carros.add(new Carro("Subaru", "Imprez", Color.BLACK, 100, null, "Japón", 2022, false));
         carros.add(new Carro("Subaru", "BRZ", Color.BLACK, 100, null, "Japón", 2022, false));
@@ -981,7 +1040,7 @@ public class Main extends javax.swing.JFrame {
         carros.add(new Carro("Mini", "Countryman", Color.BLACK, 100, null, "UK", 2022, false));
         
         carros.add(new Carro("Volvo", "", Color.BLACK, 100, null, "Suecia", 2022, false));
-    }
+    }*/
     
     private ArrayList<Usuario> usuarios= new ArrayList();
     private ArrayList<Carro> carros= new ArrayList();
@@ -991,6 +1050,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jB_crear;
     private javax.swing.JButton jB_login;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

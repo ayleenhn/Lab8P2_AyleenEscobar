@@ -1,9 +1,10 @@
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Carro {
+public class Carro implements Serializable{
     private String marca, modelo;
     private Color color;
     private double precio;
@@ -15,7 +16,8 @@ public class Carro {
     private int velocidadPunta;
     private double tiempo;
     private Circuito circuito;
-
+    
+    private static final long SerialVersionUID=888L;
 
     public Carro() {
     }
@@ -136,6 +138,5 @@ public class Carro {
     public String toString() {
         return "Carro{" + "marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", precio=" + precio + ", mejorasVisuales=" + mejorasVisuales + ", pais=" + pais + ", year=" + year + ", Reconstruido=" + Reconstruido + '}';
     }
-    
-    
+     
 }

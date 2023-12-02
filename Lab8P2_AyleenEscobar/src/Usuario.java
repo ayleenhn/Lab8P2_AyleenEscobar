@@ -1,9 +1,10 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 
-public class Usuario {
+public class Usuario implements Serializable{
     //Nombre, correo, pais de residencia y fecha de nacimiento
     private String nombre, correo, pais,usuario, password;
     private int saldo;

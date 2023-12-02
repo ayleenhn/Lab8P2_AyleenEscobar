@@ -1,10 +1,17 @@
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ItemEvent;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -15,16 +22,12 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        jP_IniciarSesion.setVisible(false);
-        jP_CrearCuenta.setVisible(false);
-        jP_CrearUsuario.setVisible(false);
-        jP_Concesionaria.setVisible(false);
-        jP_Dentro.setVisible(false);
-        jP_Garage.setVisible(false);
-        jP_VentaCarros.setVisible(false);
-        jL_Iniciar.setVisible(true);
+        VolverIncio();
         
-        //carrosAgrgar();
+        
+        carrosAgrgar();
+        ConsAgregar();
+        PartesAgregar();
     }
 
     /**
@@ -54,6 +57,7 @@ public class Main extends javax.swing.JFrame {
         jB_login = new javax.swing.JButton();
         jL_Iniciar = new javax.swing.JLabel();
         jP_IniciarSesion = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
         jButton18 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -108,6 +112,8 @@ public class Main extends javax.swing.JFrame {
         jP_VentaCarros = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jLabel19 = new javax.swing.JLabel();
+        jP_Simulacion = new javax.swing.JPanel();
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 102));
 
@@ -229,12 +235,12 @@ public class Main extends javax.swing.JFrame {
         jP_IniciarSesion.setBackground(new java.awt.Color(0, 0, 0));
         jP_IniciarSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel21.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setText("Inciar Sesion");
+        jP_IniciarSesion.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, -1, -1));
+
         jButton18.setText("Volver Inicio");
-        jButton18.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton18MouseClicked(evt);
-            }
-        });
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton18ActionPerformed(evt);
@@ -270,18 +276,13 @@ public class Main extends javax.swing.JFrame {
         jP_IniciarSesion.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/need-for-speed-2560x1440-mclaren.jpg"))); // NOI18N
-        jP_IniciarSesion.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jP_IniciarSesion.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 480));
 
         jP_CrearCuenta.setBackground(new java.awt.Color(0, 0, 0));
         jP_CrearCuenta.setForeground(new java.awt.Color(255, 255, 255));
         jP_CrearCuenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton19.setText("Volver Inicio");
-        jButton19.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton19MouseClicked(evt);
-            }
-        });
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton19ActionPerformed(evt);
@@ -422,7 +423,7 @@ public class Main extends javax.swing.JFrame {
         jP_Dentro.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 226, 50));
 
         jButton6.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
-        jButton6.setText("Comprar Carro");
+        jButton6.setText("Vender Carro");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -572,28 +573,45 @@ public class Main extends javax.swing.JFrame {
 
         jP_VentaCarros.setBackground(new java.awt.Color(255, 255, 255));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jList1.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(jList1);
+
+        jLabel19.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Mis Carros");
 
         javax.swing.GroupLayout jP_VentaCarrosLayout = new javax.swing.GroupLayout(jP_VentaCarros);
         jP_VentaCarros.setLayout(jP_VentaCarrosLayout);
         jP_VentaCarrosLayout.setHorizontalGroup(
             jP_VentaCarrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_VentaCarrosLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(534, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addGroup(jP_VentaCarrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(454, Short.MAX_VALUE))
         );
         jP_VentaCarrosLayout.setVerticalGroup(
             jP_VentaCarrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_VentaCarrosLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_VentaCarrosLayout.createSequentialGroup()
+                .addContainerGap(74, Short.MAX_VALUE)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103))
+        );
+
+        jP_Simulacion.setPreferredSize(new java.awt.Dimension(760, 470));
+
+        javax.swing.GroupLayout jP_SimulacionLayout = new javax.swing.GroupLayout(jP_Simulacion);
+        jP_Simulacion.setLayout(jP_SimulacionLayout);
+        jP_SimulacionLayout.setHorizontalGroup(
+            jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 760, Short.MAX_VALUE)
+        );
+        jP_SimulacionLayout.setVerticalGroup(
+            jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -641,6 +659,11 @@ public class Main extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jP_VentaCarros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jP_Simulacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -685,6 +708,11 @@ public class Main extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jP_VentaCarros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jP_Simulacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -699,26 +727,11 @@ public class Main extends javax.swing.JFrame {
         }else if (!edadvalida(jd_fecha.getDate())) {
             jL_edad.setVisible(true);
         } else {
-            usuarios.add(new Usuario(jTF_nombre.getText(),
-                                    jTF_correo.getText(),
-                                    jTF_pais.getText(),"","",150000,
-                                    jd_fecha.getDate())
-            );
-            jTF_nombre.setText("");
-            jTF_correo.setText("");
-            jTF_pais.setText("");
-            jd_fecha.setDate(new Date());
-            jL_edad.setVisible(false);
-            
             jP_CrearCuenta.setVisible(false);
-            jP_IniciarSesion.setVisible(false);
-            jL_contra.setVisible(false);
-            jL_contra2.setVisible(false);
-            jP_Dentro.setVisible(false);
-            jP_Garage.setVisible(false);
-            jP_Concesionaria.setVisible(false);
-            jP_VentaCarros.setVisible(false);
+            //jL_contra.setVisible(false);
+            //jL_contra2.setVisible(false);
             jP_CrearUsuario.setVisible(true);
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -733,6 +746,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
         if (jTF_usuario.getText().isEmpty() || jPF_Password.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Llene las casillas.");
         }else if (!validarContra(jPF_Password.getText())) {
@@ -741,19 +755,24 @@ public class Main extends javax.swing.JFrame {
             jTF_usuario.setText("");
             jPF_Password.setText("");
         }else{
-            usuarios.add(new Usuario(jTF_nombre.getText(),
+            Usuario u = (new Usuario(jTF_nombre.getText(),
                                     jTF_correo.getText(),
                                     jTF_pais.getText(),jTF_usuario.getText(),jPF_Password.getText(),150000,
                                     jd_fecha.getDate())
             );
+            AdministrarUser au = new AdministrarUser("./Usuario.usr");
+            au.cargarArchivo();
+            au.setUsuario(u);
+            au.escribirArchivo();
+            
             JOptionPane.showMessageDialog(this, "Usuario creado existosamente");
-            jP_CrearCuenta.setVisible(false);
+            jTF_nombre.setText("");
+            jTF_correo.setText("");
+            jTF_pais.setText("");
+            jd_fecha.setDate(new Date());
+            jL_edad.setVisible(false);
+            
             jP_CrearUsuario.setVisible(false);
-            jP_IniciarSesion.setVisible(false);
-            jP_Dentro.setVisible(false);
-            jP_Concesionaria.setVisible(false);
-            jP_Garage.setVisible(false);
-            jP_VentaCarros.setVisible(false);
             jB_login.setVisible(true);
             jB_crear.setVisible(true);
             jL_Iniciar.setVisible(true);
@@ -790,43 +809,28 @@ public class Main extends javax.swing.JFrame {
     private void jCB_Carros_paisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCB_Carros_paisItemStateChanged
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
+            
             String paisSeleccionado = (String) jCB_Carros_pais.getSelectedItem();
-
             DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
             modelo.setRowCount(0);
-
-            for (Carro car : carros) {
-                if (car.getPais().equals(paisSeleccionado)) {
-                    Object[] newrow = {
-                        car.getMarca(),
-                        car.getModelo(),
-                        car.getYear(),
-                        car.getPrecio()
-                    };
-                    modelo.addRow(newrow);
-                }
-            }
+            AdministrarCarro ac = new AdministrarCarro("./carros.car");
+            ac.cargarArchivo();
+            HiloCarro Hc = new HiloCarro(ac.getListaCarro(), modelo, paisSeleccionado);
+            Hc.start();
         }
     }//GEN-LAST:event_jCB_Carros_paisItemStateChanged
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         if (evt.isMetaDown()) {
-            //seleccionar un nodo con click derecho
+            
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        jL_Iniciar.setVisible(false);
-        jP_IniciarSesion.setVisible(false);
-        jP_CrearUsuario.setVisible(false);
-        jP_CrearCuenta.setVisible(false);
         jB_login.setVisible(false);
-        jB_crear.setVisible(false);
-        jP_VentaCarros.setVisible(false);
         jP_Dentro.setVisible(false);
-        jP_Garage.setVisible(false);
         jP_Concesionaria.setVisible(true);
         
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -840,32 +844,22 @@ public class Main extends javax.swing.JFrame {
             modelo.setRowCount(0);
 
             ArrayList<Carro> carrosUsuario = usuarioEnSesion.getCarros();
-            for (Carro car : carrosUsuario) {
-                if (car.getPais().equals(paisSeleccionado)) {
-                    Object[] newrow = {
-                        car.getMarca(),
-                        car.getModelo(),
-                        car.getYear(),
-                        car.getPrecio()
-                    };
-                    modelo.addRow(newrow);
-                }
-            }
+
+            HiloCarro hc = new HiloCarro(carrosUsuario, modelo, paisSeleccionado);
+            hc.start();
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        jL_Iniciar.setVisible(false);
-        jP_IniciarSesion.setVisible(false);
-        jP_CrearUsuario.setVisible(false);
-        jP_CrearCuenta.setVisible(false);
-        jB_login.setVisible(false);
-        jB_crear.setVisible(false);
-        jP_Concesionaria.setVisible(false);
-        jP_Dentro.setVisible(false);
         jP_Garage.setVisible(false);
         jP_VentaCarros.setVisible(true);
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        ArrayList<Carro> carrosUsuario = usuarioEnSesion.getCarros();
+        
+        for (Carro carro : carrosUsuario) {
+            listModel.addElement(carro.toString());
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -892,31 +886,37 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
-    private void jButton19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton19MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19MouseClicked
-
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
+        VolverIncio();
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
-        
-        jD_Login.setVisible(true);
         if (jTF_usuarioInicio.getText().isEmpty() || jPF_PasswordInicio.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Llene las casillas.");
-        }else{
-            boolean siesta=false;
-            for (Usuario usuario : usuarios) {
+        } else {
+            ab = new adminBarraInicio(jPB_Busca_user, false, true);
+            ab.start();
+            jD_Login.pack();
+            jD_Login.setLocationRelativeTo(this);
+            jD_Login.setModal(true);
+            jD_Login.setVisible(true);
+            
+            AdministrarUser au = new AdministrarUser("./Usuario.usr");
+            au.cargarArchivo();
+
+            boolean siesta = false;
+            for (Usuario usuario : au.getUsuarioLista()) {
                 if (usuario.getUsuario().equals(jTF_usuarioInicio.getText()) && usuario.getPassword().equals(jPF_PasswordInicio.getText())) {
                     JOptionPane.showMessageDialog(this, "Bienvenido!!");
                     usuarioEnSesion = usuario;
-                    siesta=true;
-                    break;
+                    siesta = true;
                 }
             }
+
             if (siesta) {
+                ab.setUsuarioEncontrado(true);
                 jB_login.setVisible(false);
                 jB_crear.setVisible(false);
                 jP_Concesionaria.setVisible(false);
@@ -924,20 +924,16 @@ public class Main extends javax.swing.JFrame {
                 jP_VentaCarros.setVisible(false);
                 jP_Dentro.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado!!\n "+"El usuario o la contraseña es incorrecto.");
             }
         }
+       ab.getBarra().setValue(0);
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
         VolverIncio();
     }//GEN-LAST:event_jButton18ActionPerformed
-
-    private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
-        // TODO add your handling code here:
-        VolverIncio();
-    }//GEN-LAST:event_jButton18MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1002,8 +998,11 @@ public class Main extends javax.swing.JFrame {
     private Carro obtenerCarroDesdeFila(int fila) {
         String marca = jTable2.getValueAt(fila, 0).toString();
         String modelo = jTable2.getValueAt(fila, 1).toString();
-
-        for (Carro carro : carros) {
+        
+        AdministrarCarro ac = new AdministrarCarro("./carros.car");
+        ac.cargarArchivo();
+        
+        for (Carro carro : ac.getListaCarro()) {
             if (carro.getMarca().equals(marca) && carro.getModelo().equals(modelo)) {
                 return carro;
             }
@@ -1011,6 +1010,7 @@ public class Main extends javax.swing.JFrame {
 
         return null;
     }
+    
     private void actualizarJListMejoras(Carro carro) {
         DefaultListModel modelo = new DefaultListModel();
 
@@ -1035,45 +1035,72 @@ public class Main extends javax.swing.JFrame {
         jB_crear.setVisible(true);
     }
     
-    /*private void carrosAgrgar() {
-        carros.add(new Carro("Subaru", "WR-X", Color.BLACK, 100, null, "Japón", 2022, false));
-        carros.add(new Carro("Subaru", "Imprez", Color.BLACK, 100, null, "Japón", 2022, false));
-        carros.add(new Carro("Subaru", "BRZ", Color.BLACK, 100, null, "Japón", 2022, false));
-        carros.add(new Carro("Toyota", "GT-86", Color.BLACK, 100, null, "Japón", 2022, false));
-        carros.add(new Carro("Toyota", "Supra", Color.BLACK, 100, null, "Japón", 2022, false));
-        carros.add(new Carro("Honda", "Integra type-R", Color.BLACK, 100, null, "Japón", 2022, false));
-        carros.add(new Carro("Honda", "CR-X", Color.BLACK, 100, null, "Japón", 2022, false));
-        carros.add(new Carro("Mitsubishi", "Lancer Evo", Color.BLACK, 100, null, "Japón", 2022, false));
-        carros.add(new Carro("Mitsubishi", "Mirage", Color.BLACK, 100, null, "Japón", 2022, false));
-        carros.add(new Carro("Nisan", "CR-X", Color.BLACK, 100, null, "Japón", 2022, false));
+    private void carrosAgrgar() { 
+        AdministrarCarro ac = new AdministrarCarro("./carros.car");
+        ac.cargarArchivo();
+        //japon
+        ac.setCarro(new Carro("Subaru", "WR-X", Color.yellow, 100, null, "Japón", 2022, false, 0, 0, 0, null));
+        ac.setCarro(new Carro("Subaru", "Imprez", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Subaru", "BRZ", Color.BLACK, 100, null, "Japón", 2022, false, 0, 0, 0, null));
+        ac.setCarro(new Carro("Toyota", "GT-86", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Toyota", "Supra", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Honda", "Integra type-R", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Honda", "CR-X", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Mitsubishi", "Lancer Evo", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Mitsubishi", "Mirage", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Nisan", "CR-X", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
         
-        carros.add(new Carro("Ford", "Mustang", Color.BLACK, 100, null, "USA", 2022, false));
-        carros.add(new Carro("Ford", "F-150", Color.BLACK, 100, null, "USA", 2022, false));
-        carros.add(new Carro("Chevloret", "Camaro", Color.BLACK, 100, null, "USA", 2022, false));
-        carros.add(new Carro("Chevloret", "Corvette", Color.BLACK, 100, null, "USA", 2022, false));
-        carros.add(new Carro("Chevloret", "Bel-Hir", Color.BLACK, 100, null, "USA", 2022, true));
+        //usa
+        ac.setCarro(new Carro("Ford", "Mustang", Color.BLACK, 100, null, "USA", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Ford", "F-150", Color.BLACK, 100, null, "USA", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Chevloret", "Camaro", Color.BLACK, 100, null, "USA", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Chevloret", "Corvette", Color.BLACK, 100, null, "USA", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Chevloret", "Bel-Hir", Color.BLACK, 100, null, "USA", 2022, true,0, 0, 0, null));
         
-        carros.add(new Carro("BWW", "M3", Color.BLACK, 100, null, "Alemania", 2022, false));
-        carros.add(new Carro("BWW", "X6", Color.BLACK, 100, null, "Alemania", 2022, false));
-        carros.add(new Carro("BWW", "M5", Color.BLACK, 100, null, "Alemania", 2022, false));
-        carros.add(new Carro("Mercedes", "", Color.BLACK, 100, null, "Alemania", 2022, false));
-        carros.add(new Carro("XW", "Beetle", Color.BLACK, 100, null, "Alemania", 2022, false));
-        carros.add(new Carro("XW", "Nordon Concept", Color.BLACK, 100, null, "Alemania", 2022, false));
-        carros.add(new Carro("Audi", "R8", Color.BLACK, 100, null, "Alemania", 2022, false));
-        carros.add(new Carro("Audi", " T= Coupe", Color.BLACK, 100, null, "Alemania", 2022, false));
+        //alemania
+        ac.setCarro(new Carro("BWW", "M3", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("BWW", "X6", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("BWW", "M5", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Mercedes", "", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("XW", "Beetle", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("XW", "Nordon Concept", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Audi", "R8", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Audi", " T= Coupe", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
         
-        carros.add(new Carro("Peugeot", "206", Color.BLACK, 100, null, "Francia", 2022, false));
-        
-        carros.add(new Carro("Mini", "Mini", Color.BLACK, 100, null, "UK", 2022, false));
-        carros.add(new Carro("Mini", "Countryman", Color.BLACK, 100, null, "UK", 2022, false));
-        
-        carros.add(new Carro("Volvo", "", Color.BLACK, 100, null, "Suecia", 2022, false));
-    }*/
+        //francia
+        ac.setCarro(new Carro("Peugeot", "206", Color.BLACK, 100, null, "Francia", 2022, false,0, 0, 0, null));
+        //uk
+        ac.setCarro(new Carro("Mini", "Mini", Color.BLACK, 100, null, "UK", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Mini", "Countryman", Color.BLACK, 100, null, "UK", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Volvo", "", Color.BLACK, 100, null, "Suecia", 2022, false,0, 0, 0, null));
+        ac.escribirArchivo();
+    }
     
-    private ArrayList<Usuario> usuarios= new ArrayList();
-    private ArrayList<Carro> carros= new ArrayList();
-    private Usuario usuarioEnSesion;
+    private void PartesAgregar(){
+        AdministrarPartes ap = new AdministrarPartes("./partes.pt");
+        ap.cargarArchivo();
+        ap.setParte(new Partes("Advance", "Spoiler", 25000));
+        ap.setParte(new Partes("DTM", "Rear Bumper", 100));
+        ap.setParte(new Partes("Fiberwerkz", "Front Bumper", 100));
+        ap.setParte(new Partes("Fifteen52", "Side Skirts", 100));
+        ap.setParte(new Partes("Origin Lab", "Front Fender", 100));
+        ap.setParte(new Partes("RocketBunny", "Rear Fender", 100));
+        ap.setParte(new Partes("Urban Outlaw.", "Hood", 100));
+        
+        ap.escribirArchivo();
+    }
+            
+    private void ConsAgregar(){
+        AdministrarConcesionaria acct = new AdministrarConcesionaria("./consecionaria.cct");
+        acct.cargarArchivo();
+        acct.setConcesionaria(new concesionaria("Los Japoneses", "Por Ahi", ( new ArrayList<>())));
+        acct.escribirArchivo();
+    }
 
+    private Usuario usuarioEnSesion;
+    adminBarraInicio ab=null;
+    AdministrarCarro ac=null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_crear;
     private javax.swing.JButton jB_login;
@@ -1104,8 +1131,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1131,6 +1160,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jP_Garage;
     private javax.swing.JPanel jP_IniciarSesion;
     private javax.swing.JPanel jP_Inicio;
+    private javax.swing.JPanel jP_Simulacion;
     private javax.swing.JPanel jP_VentaCarros;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

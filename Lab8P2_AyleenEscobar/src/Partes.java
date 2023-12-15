@@ -4,7 +4,8 @@ import java.io.Serializable;
 public class Partes implements Serializable{
     private String marca, clasificación;
     private double precio;
-
+    private static final long serialVersionUID = 555L;
+    
     public Partes() {
     }
 

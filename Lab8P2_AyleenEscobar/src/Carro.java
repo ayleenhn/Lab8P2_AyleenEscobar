@@ -8,7 +8,7 @@ public class Carro implements Serializable{
     private String marca, modelo;
     private Color color;
     private double precio;
-    private ArrayList<String> mejorasVisuales;
+    private ArrayList<Partes> mejorasVisuales;
     private String pais;
     private int year;
     private boolean Reconstruido;
@@ -22,7 +22,7 @@ public class Carro implements Serializable{
     public Carro() {
     }
 
-    public Carro(String marca, String modelo, Color color, double precio, ArrayList<String> mejorasVisuales, 
+    public Carro(String marca, String modelo, Color color, double precio, ArrayList<Partes> mejorasVisuales, 
                     String pais, int year, boolean Reconstruido, int horsepower, int velocidadPunta, double tiempo, Circuito circuito) {
         this.marca = marca;
         this.modelo = modelo;
@@ -70,11 +70,11 @@ public class Carro implements Serializable{
         this.precio = precio;
     }
 
-    public ArrayList<String> getMejorasVisuales() {
+    public ArrayList<Partes> getMejorasVisuales() {
         return mejorasVisuales;
     }
 
-    public void setMejorasVisuales(ArrayList<String> mejorasVisuales) {
+    public void setMejorasVisuales(ArrayList<Partes> mejorasVisuales) {
         this.mejorasVisuales = mejorasVisuales;
     }
 
@@ -136,7 +136,7 @@ public class Carro implements Serializable{
     
     @Override
     public String toString() {
-        return "Carro{" + "marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", precio=" + precio + ", mejorasVisuales=" + mejorasVisuales + ", pais=" + pais + ", year=" + year + ", Reconstruido=" + Reconstruido + '}';
+        return marca;
     }
      
 }

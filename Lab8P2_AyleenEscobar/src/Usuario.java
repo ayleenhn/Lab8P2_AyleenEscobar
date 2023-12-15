@@ -1,4 +1,3 @@
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,14 +6,14 @@ import java.util.Date;
 public class Usuario implements Serializable{
     //Nombre, correo, pais de residencia y fecha de nacimiento
     private String nombre, correo, pais,usuario, password;
-    private int saldo;
+    private double saldo;
     private Date date;
     private ArrayList<Carro> Carros;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String correo, String pais, String usuario, String password, int saldo, Date date) {
+    public Usuario(String nombre, String correo, String pais, String usuario, String password, double  saldo, Date date) {
         this.nombre = nombre;
         this.correo = correo;
         this.pais = pais;
@@ -22,6 +21,7 @@ public class Usuario implements Serializable{
         this.password = password;
         this.saldo = saldo;
         this.date = date;
+        this.Carros = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -64,11 +64,11 @@ public class Usuario implements Serializable{
         this.password = password;
     }
 
-    public int getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(int saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
@@ -92,5 +92,4 @@ public class Usuario implements Serializable{
     public String toString() {
         return usuario;
     }
-     
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class concesionaria implements Serializable{
     private String nombre, locación;
     private ArrayList<Carro> listacarros;
+    private static final long serialVersionUID = 444L;
 
     public concesionaria() {
     }

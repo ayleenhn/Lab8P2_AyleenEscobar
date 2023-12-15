@@ -1,14 +1,17 @@
 
-public class Circuito {
-   private double longitud;
+import java.io.Serializable;
+
+public class Circuito implements Serializable{
+    private double longitud;
     private int Cantidad_Curvas;
-    private String tipo;
+    private Tipo tipo;
     private String locacion;
+    public enum Tipo { CIRCUITO, OFF_ROAD, DRAG }
 
     public Circuito() {
     }
 
-    public Circuito(double longitud, int Cantidad_Curvas, String tipo, String locacion) {
+    public Circuito(double longitud, int Cantidad_Curvas, Tipo tipo, String locacion) {
         this.longitud = longitud;
         this.Cantidad_Curvas = Cantidad_Curvas;
         this.tipo = tipo;
@@ -31,11 +34,11 @@ public class Circuito {
         this.Cantidad_Curvas = Cantidad_Curvas;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 

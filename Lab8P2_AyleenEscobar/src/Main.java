@@ -1,18 +1,14 @@
 
+import java.awt.Button;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.event.ItemEvent;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JProgressBar;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.*;
+import javax.swing.*;
 
 
 public class Main extends javax.swing.JFrame {
@@ -22,12 +18,19 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        VolverIncio();
-        
+        jL_Iniciar.setVisible(true);
+        jP_IniciarSesion.setVisible(false);
+        jP_CrearCuenta.setVisible(false);
+        jP_CrearUsuario.setVisible(false);
+        jP_Dentro.setVisible(false);
+        /*jL_Iniciar.setVisible(true);
+        jB_login.setVisible(true);
+        jB_crear.setVisible(true);*/
         
         carrosAgrgar();
         ConsAgregar();
         PartesAgregar();
+        UsuarioSimulacion();
     }
 
     /**
@@ -90,17 +93,7 @@ public class Main extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jP_Dentro = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel16 = new javax.swing.JLabel();
-        jP_Concesionaria = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel12 = new javax.swing.JLabel();
-        jCB_Carros_pais = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jP_Garage = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -109,11 +102,40 @@ public class Main extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
+        jP_Concesionaria = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+        jCB_Carros_pais = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jL_Saldo = new javax.swing.JLabel();
         jP_VentaCarros = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListCarros = new javax.swing.JList<>();
         jLabel19 = new javax.swing.JLabel();
         jP_Simulacion = new javax.swing.JPanel();
+        jCB_TipoSimulacion = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        jPB_Car1 = new javax.swing.JProgressBar();
+        jLabel26 = new javax.swing.JLabel();
+        jPB_Car2 = new javax.swing.JProgressBar();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jCB_Carro1 = new javax.swing.JComboBox<>();
+        jLabel29 = new javax.swing.JLabel();
+        jCB_Carros2 = new javax.swing.JComboBox<>();
+        jBttn_IniciarCarrera = new javax.swing.JButton();
+        jP_ModificarUser = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jP_InstalacionPartes = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 102));
 
@@ -200,6 +222,7 @@ public class Main extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -246,7 +269,7 @@ public class Main extends javax.swing.JFrame {
                 jButton18ActionPerformed(evt);
             }
         });
-        jP_IniciarSesion.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
+        jP_IniciarSesion.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -260,10 +283,12 @@ public class Main extends javax.swing.JFrame {
 
         jPF_PasswordInicio.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
         jPF_PasswordInicio.setForeground(new java.awt.Color(0, 0, 0));
+        jPF_PasswordInicio.setText("User12!");
         jP_IniciarSesion.add(jPF_PasswordInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 210, -1));
 
         jTF_usuarioInicio.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
         jTF_usuarioInicio.setForeground(new java.awt.Color(0, 0, 0));
+        jTF_usuarioInicio.setText("User12");
         jP_IniciarSesion.add(jTF_usuarioInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 210, -1));
 
         jButton7.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 24)); // NOI18N
@@ -276,9 +301,9 @@ public class Main extends javax.swing.JFrame {
         jP_IniciarSesion.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/need-for-speed-2560x1440-mclaren.jpg"))); // NOI18N
-        jP_IniciarSesion.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 480));
+        jP_IniciarSesion.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 460));
 
-        jP_CrearCuenta.setBackground(new java.awt.Color(0, 0, 0));
+        jP_CrearCuenta.setBackground(new java.awt.Color(102, 102, 102));
         jP_CrearCuenta.setForeground(new java.awt.Color(255, 255, 255));
         jP_CrearCuenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -288,44 +313,44 @@ public class Main extends javax.swing.JFrame {
                 jButton19ActionPerformed(evt);
             }
         });
-        jP_CrearCuenta.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+        jP_CrearCuenta.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Crear cuenta");
-        jP_CrearCuenta.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
+        jP_CrearCuenta.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Correo: ");
-        jP_CrearCuenta.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, -1, -1));
+        jP_CrearCuenta.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre: ");
-        jP_CrearCuenta.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, -1, -1));
+        jP_CrearCuenta.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Pais de residencia: ");
-        jP_CrearCuenta.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
+        jP_CrearCuenta.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Fecha de nacimiento:");
-        jP_CrearCuenta.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
+        jP_CrearCuenta.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
 
         jTF_nombre.setForeground(new java.awt.Color(0, 0, 0));
-        jP_CrearCuenta.add(jTF_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 206, -1));
+        jP_CrearCuenta.add(jTF_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 206, -1));
 
         jTF_correo.setForeground(new java.awt.Color(0, 0, 0));
-        jP_CrearCuenta.add(jTF_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 206, -1));
+        jP_CrearCuenta.add(jTF_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 206, -1));
 
         jTF_pais.setForeground(new java.awt.Color(0, 0, 0));
-        jP_CrearCuenta.add(jTF_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 206, -1));
+        jP_CrearCuenta.add(jTF_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 206, -1));
 
         jd_fecha.setForeground(new java.awt.Color(255, 255, 255));
-        jP_CrearCuenta.add(jd_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, 206, -1));
+        jP_CrearCuenta.add(jd_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 206, -1));
 
         jButton1.setText("Crear Cuenta");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -333,17 +358,17 @@ public class Main extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jP_CrearCuenta.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, -1, -1));
+        jP_CrearCuenta.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, -1, -1));
 
         jL_edad.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jL_edad.setForeground(new java.awt.Color(255, 153, 153));
         jL_edad.setText("La edad debe ser mayor de 12.");
-        jP_CrearCuenta.add(jL_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, -1, -1));
+        jP_CrearCuenta.add(jL_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/652823(1).png"))); // NOI18N
-        jP_CrearCuenta.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, -1));
+        jP_CrearCuenta.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 450));
 
         jP_CrearUsuario.setBackground(new java.awt.Color(0, 0, 0));
         jP_CrearUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -390,49 +415,58 @@ public class Main extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Ford-Focus-RS-nfs-4k(1).jpg"))); // NOI18N
         jP_CrearUsuario.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jP_Dentro.setBackground(new java.awt.Color(0, 0, 0));
-        jP_Dentro.setForeground(new java.awt.Color(0, 0, 0));
+        jP_Dentro.setBackground(new java.awt.Color(255, 255, 255));
         jP_Dentro.setPreferredSize(new java.awt.Dimension(760, 470));
         jP_Dentro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
-        jButton3.setText("Modificar Usuario");
-        jP_Dentro.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, 50));
+        jP_Garage.setBackground(new java.awt.Color(255, 255, 255));
+        jP_Garage.setPreferredSize(new java.awt.Dimension(740, 470));
+        jP_Garage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton4.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
-        jButton4.setText("Garage");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Marca", "Modelo", "Año de Fabricación", "Precio"
             }
-        });
-        jP_Dentro.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 226, 50));
-
-        jButton5.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
-        jButton5.setText("Concesionaria");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                jTable2MouseClicked(evt);
             }
         });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jP_Dentro.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 226, 50));
+        jScrollPane3.setViewportView(jTable2);
 
-        jButton6.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
-        jButton6.setText("Vender Carro");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+        jP_Garage.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 440, 280));
+
+        jListMejoras.setModel(new DefaultListModel());
+        jScrollPane4.setViewportView(jListMejoras);
+
+        jP_Garage.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 180, 200));
+
+        jLabel17.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 24)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Atributos");
+        jP_Garage.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Japón", "USA", "Alemania", "Francia", "UK", "Suecia" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
             }
         });
-        jP_Dentro.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 226, 50));
+        jP_Garage.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 170, -1));
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/650294(1).jpg"))); // NOI18N
-        jP_Dentro.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, -1));
+        jLabel18.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Carros en mi garage");
+        jP_Garage.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
+
+        jTabbedPane1.addTab("Garage", jP_Garage);
 
         jP_Concesionaria.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -489,18 +523,25 @@ public class Main extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Pais:");
+        jLabel13.setText("Concesionaria:");
+
+        jL_Saldo.setBackground(new java.awt.Color(0, 0, 0));
+        jL_Saldo.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 24)); // NOI18N
+        jL_Saldo.setForeground(new java.awt.Color(0, 0, 0));
+        jL_Saldo.setText("Mi saldo: 000000");
 
         javax.swing.GroupLayout jP_ConcesionariaLayout = new javax.swing.GroupLayout(jP_Concesionaria);
         jP_Concesionaria.setLayout(jP_ConcesionariaLayout);
         jP_ConcesionariaLayout.setHorizontalGroup(
             jP_ConcesionariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_ConcesionariaLayout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(jP_ConcesionariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_ConcesionariaLayout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGap(264, 264, 264))
+                        .addGap(109, 109, 109)
+                        .addComponent(jL_Saldo)
+                        .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_ConcesionariaLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48))
@@ -513,9 +554,11 @@ public class Main extends javax.swing.JFrame {
         jP_ConcesionariaLayout.setVerticalGroup(
             jP_ConcesionariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_ConcesionariaLayout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addGap(33, 33, 33)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jP_ConcesionariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jL_Saldo))
+                .addGap(18, 18, 18)
                 .addGroup(jP_ConcesionariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jCB_Carros_pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -524,57 +567,17 @@ public class Main extends javax.swing.JFrame {
                 .addGap(64, 64, 64))
         );
 
-        jP_Garage.setBackground(new java.awt.Color(255, 255, 255));
-        jP_Garage.setPreferredSize(new java.awt.Dimension(740, 470));
-        jP_Garage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Marca", "Modelo", "Año de Fabricación", "Precio"
-            }
-        ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(jTable2);
-
-        jP_Garage.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 440, 280));
-
-        jListMejoras.setModel(new DefaultListModel());
-        jScrollPane4.setViewportView(jListMejoras);
-
-        jP_Garage.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 180, 200));
-
-        jLabel17.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 24)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setText("Atributos");
-        jP_Garage.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, -1, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Japón", "USA", "Alemania", "Francia", "UK", "Suecia" }));
-        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox1ItemStateChanged(evt);
-            }
-        });
-        jP_Garage.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 170, -1));
-
-        jLabel18.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("Carros en mi garage");
-        jP_Garage.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, -1));
+        jTabbedPane1.addTab("Concesionaria", jP_Concesionaria);
 
         jP_VentaCarros.setBackground(new java.awt.Color(255, 255, 255));
 
-        jList1.setModel(new DefaultListModel());
-        jScrollPane2.setViewportView(jList1);
+        jListCarros.setModel(new DefaultListModel());
+        jListCarros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListCarrosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jListCarros);
 
         jLabel19.setFont(new java.awt.Font("Five Nights at Freddy's", 0, 36)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
@@ -585,34 +588,213 @@ public class Main extends javax.swing.JFrame {
         jP_VentaCarrosLayout.setHorizontalGroup(
             jP_VentaCarrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_VentaCarrosLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
                 .addGroup(jP_VentaCarrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(454, Short.MAX_VALUE))
+                    .addGroup(jP_VentaCarrosLayout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_VentaCarrosLayout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(jLabel19)))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
         jP_VentaCarrosLayout.setVerticalGroup(
             jP_VentaCarrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_VentaCarrosLayout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
         );
 
+        jTabbedPane1.addTab("Vender Carros", jP_VentaCarros);
+
+        jP_Simulacion.setBackground(new java.awt.Color(255, 255, 255));
         jP_Simulacion.setPreferredSize(new java.awt.Dimension(760, 470));
+
+        jCB_TipoSimulacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CIRCUITO", "OFF_ROAD", "DRAG" }));
+
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Tipo:");
+
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Carro 1:");
+
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Carro 1:");
+
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("Tu carro:");
+
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setText("Tu competencia:");
+
+        jBttn_IniciarCarrera.setText("INICIAR");
+        jBttn_IniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBttn_IniciarCarreraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jP_SimulacionLayout = new javax.swing.GroupLayout(jP_Simulacion);
         jP_Simulacion.setLayout(jP_SimulacionLayout);
         jP_SimulacionLayout.setHorizontalGroup(
             jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+            .addGroup(jP_SimulacionLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_SimulacionLayout.createSequentialGroup()
+                        .addGroup(jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCB_Carros2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_SimulacionLayout.createSequentialGroup()
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPB_Car1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_SimulacionLayout.createSequentialGroup()
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPB_Car2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jP_SimulacionLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCB_TipoSimulacion, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCB_Carro1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_SimulacionLayout.createSequentialGroup()
+                .addContainerGap(327, Short.MAX_VALUE)
+                .addComponent(jBttn_IniciarCarrera)
+                .addGap(321, 321, 321))
         );
         jP_SimulacionLayout.setVerticalGroup(
             jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGroup(jP_SimulacionLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jCB_TipoSimulacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(jCB_Carro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCB_Carros2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29))
+                .addGap(83, 83, 83)
+                .addGroup(jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPB_Car1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26))
+                .addGap(18, 18, 18)
+                .addGroup(jP_SimulacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPB_Car2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jBttn_IniciarCarrera)
+                .addGap(19, 19, 19))
         );
+
+        jTabbedPane1.addTab("Simulacion de Carrera", jP_Simulacion);
+
+        jP_ModificarUser.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel22.setText("No pude lograrlo :c");
+
+        javax.swing.GroupLayout jP_ModificarUserLayout = new javax.swing.GroupLayout(jP_ModificarUser);
+        jP_ModificarUser.setLayout(jP_ModificarUserLayout);
+        jP_ModificarUserLayout.setHorizontalGroup(
+            jP_ModificarUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_ModificarUserLayout.createSequentialGroup()
+                .addGroup(jP_ModificarUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_ModificarUserLayout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_ModificarUserLayout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(341, Short.MAX_VALUE))
+        );
+        jP_ModificarUserLayout.setVerticalGroup(
+            jP_ModificarUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_ModificarUserLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel22)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel23)
+                .addContainerGap(259, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Instalacion de partes", jP_ModificarUser);
+
+        jP_InstalacionPartes.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel24.setText("Hola User");
+
+        jLabel30.setText("Nuevo nombre:");
+
+        jLabel31.setText("Nuevo Contra:");
+
+        jButton3.setText("Modificar");
+
+        javax.swing.GroupLayout jP_InstalacionPartesLayout = new javax.swing.GroupLayout(jP_InstalacionPartes);
+        jP_InstalacionPartes.setLayout(jP_InstalacionPartesLayout);
+        jP_InstalacionPartesLayout.setHorizontalGroup(
+            jP_InstalacionPartesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_InstalacionPartesLayout.createSequentialGroup()
+                .addGap(0, 161, Short.MAX_VALUE)
+                .addGroup(jP_InstalacionPartesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jP_InstalacionPartesLayout.createSequentialGroup()
+                        .addComponent(jLabel31)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_InstalacionPartesLayout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(253, 253, 253))
+            .addGroup(jP_InstalacionPartesLayout.createSequentialGroup()
+                .addGroup(jP_InstalacionPartesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_InstalacionPartesLayout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_InstalacionPartesLayout.createSequentialGroup()
+                        .addGap(318, 318, 318)
+                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_InstalacionPartesLayout.createSequentialGroup()
+                        .addGap(296, 296, 296)
+                        .addComponent(jButton3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jP_InstalacionPartesLayout.setVerticalGroup(
+            jP_InstalacionPartesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_InstalacionPartesLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel24)
+                .addGap(32, 32, 32)
+                .addGroup(jP_InstalacionPartesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel30))
+                .addGap(18, 18, 18)
+                .addGroup(jP_InstalacionPartesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_InstalacionPartesLayout.createSequentialGroup()
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel25))
+                    .addComponent(jLabel31))
+                .addGap(80, 80, 80)
+                .addComponent(jButton3)
+                .addContainerGap(124, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Modificar User", jP_InstalacionPartes);
+
+        jP_Dentro.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 720, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -622,12 +804,12 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_Concesionaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jP_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jP_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -642,27 +824,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jP_Dentro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 10, Short.MAX_VALUE)
-                    .addComponent(jP_Garage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 10, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_VentaCarros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_Simulacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -671,12 +833,12 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_Concesionaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jP_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jP_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -691,27 +853,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jP_Dentro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_Garage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_VentaCarros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jP_Simulacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -727,9 +869,10 @@ public class Main extends javax.swing.JFrame {
         }else if (!edadvalida(jd_fecha.getDate())) {
             jL_edad.setVisible(true);
         } else {
+            //jP_CrearCuenta.setVisible(false);
+            jL_contra.setVisible(false);
+            jL_contra2.setVisible(false);
             jP_CrearCuenta.setVisible(false);
-            //jL_contra.setVisible(false);
-            //jL_contra2.setVisible(false);
             jP_CrearUsuario.setVisible(true);
             
         }
@@ -782,9 +925,8 @@ public class Main extends javax.swing.JFrame {
 
     private void jB_crearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_crearMouseClicked
         // TODO add your handling code here:
-        jL_edad.setVisible(false);
-        jL_Iniciar.setVisible(false);
         jP_CrearCuenta.setVisible(true);
+        jL_edad.setVisible(false);
         jB_login.setVisible(false);
         jB_crear.setVisible(false);
         jL_Iniciar.setVisible(false);
@@ -798,16 +940,7 @@ public class Main extends javax.swing.JFrame {
         jL_Iniciar.setVisible(false);
     }//GEN-LAST:event_jB_loginMouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        // TODO add your handling code here:
-        jP_Concesionaria.setVisible(true);
-        jB_login.setVisible(false);
-        jB_crear.setVisible(false);
-        jL_Iniciar.setVisible(false);
-    }//GEN-LAST:event_jButton5MouseClicked
-
     private void jCB_Carros_paisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCB_Carros_paisItemStateChanged
-        // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             
             String paisSeleccionado = (String) jCB_Carros_pais.getSelectedItem();
@@ -815,25 +948,34 @@ public class Main extends javax.swing.JFrame {
             modelo.setRowCount(0);
             AdministrarCarro ac = new AdministrarCarro("./carros.car");
             ac.cargarArchivo();
-            HiloCarro Hc = new HiloCarro(ac.getListaCarro(), modelo, paisSeleccionado);
+            HiloCarroConcesionaria Hc = new HiloCarroConcesionaria(ac.getListaCarro(), modelo, paisSeleccionado);
             Hc.start();
         }
     }//GEN-LAST:event_jCB_Carros_paisItemStateChanged
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        if (evt.isMetaDown()) {
-            
+
+        if (evt.equals(MouseEvent.BUTTON3)) {
+            int selectedRow = jTable1.getSelectedRow();
+            if (selectedRow != -1) {
+                Carro carroSeleccionado = (Carro) jTable1.getValueAt(selectedRow, 0);
+
+                int option = JOptionPane.showConfirmDialog(null, "¿Desea comprar este carro?", "Confirmar compra", JOptionPane.YES_NO_OPTION);
+
+                if (option == JOptionPane.YES_OPTION) {
+                    double precioCarro = carroSeleccionado.getPrecio();
+
+                    if (usuarioEnSesion.getSaldo() >= precioCarro) {
+                        usuarioEnSesion.setSaldo(usuarioEnSesion.getSaldo() - precioCarro);
+                        usuarioEnSesion.getCarros().add(carroSeleccionado);
+                        actualizarCarrosUsuarioEnSesion();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Saldo insuficiente para comprar este carro.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        jB_login.setVisible(false);
-        jP_Dentro.setVisible(false);
-        jP_Concesionaria.setVisible(true);
-        
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
@@ -845,40 +987,15 @@ public class Main extends javax.swing.JFrame {
 
             ArrayList<Carro> carrosUsuario = usuarioEnSesion.getCarros();
 
-            HiloCarro hc = new HiloCarro(carrosUsuario, modelo, paisSeleccionado);
-            hc.start();
+            SwingUtilities.invokeLater(() -> {
+                HiloCarrosGaraje hc = new HiloCarrosGaraje(carrosUsuario, modelo);
+                hc.start();
+            });
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        jP_Garage.setVisible(false);
-        jP_VentaCarros.setVisible(true);
-        DefaultListModel<String> listModel = new DefaultListModel<>();
-        ArrayList<Carro> carrosUsuario = usuarioEnSesion.getCarros();
-        
-        for (Carro carro : carrosUsuario) {
-            listModel.addElement(carro.toString());
-        }
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        jL_Iniciar.setVisible(false);
-        jP_IniciarSesion.setVisible(false);
-        jP_CrearUsuario.setVisible(false);
-        jP_CrearCuenta.setVisible(false);
-        jB_login.setVisible(false);
-        jB_crear.setVisible(false);
-        jP_Concesionaria.setVisible(false);
-        jP_VentaCarros.setVisible(false);
-        jP_Dentro.setVisible(false);
-        jP_Garage.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
-        
         int selectedRow = jTable2.getSelectedRow();
         if (selectedRow >= 0) {
             Carro selectedCar = obtenerCarroDesdeFila(selectedRow);
@@ -903,7 +1020,7 @@ public class Main extends javax.swing.JFrame {
             jD_Login.setModal(true);
             jD_Login.setVisible(true);
             
-            AdministrarUser au = new AdministrarUser("./Usuario.usr");
+            AdministrarUser au = new AdministrarUser("./usuario.usr");
             au.cargarArchivo();
 
             boolean siesta = false;
@@ -912,28 +1029,57 @@ public class Main extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Bienvenido!!");
                     usuarioEnSesion = usuario;
                     siesta = true;
+                    jL_Saldo.setText("Mi saldo: "+usuario.getSaldo());
                 }
             }
-
+            
             if (siesta) {
                 ab.setUsuarioEncontrado(true);
-                jB_login.setVisible(false);
-                jB_crear.setVisible(false);
-                jP_Concesionaria.setVisible(false);
-                jP_Garage.setVisible(false);
-                jP_VentaCarros.setVisible(false);
+                jP_IniciarSesion.setVisible(false);
                 jP_Dentro.setVisible(true);
+                ab.getBarra().setValue(0);
+                DefaultListModel<String> listModel = new DefaultListModel<>();
+                ArrayList<Carro> carrosUsuario = usuarioEnSesion.getCarros();
+                
+
+                for (Carro carro : carrosUsuario) {
+                    listModel.addElement(carro.toString());
+                }
             } else {
+                ab.setUsuarioEncontrado(false);
                 JOptionPane.showMessageDialog(null, "Usuario no encontrado!!\n "+"El usuario o la contraseña es incorrecto.");
             }
         }
-       ab.getBarra().setValue(0);
+       
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
         VolverIncio();
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jListCarrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListCarrosMouseClicked
+        if (SwingUtilities.isRightMouseButton(evt)) {
+            int selectedCarIndex = jListCarros.getSelectedIndex();
+            if (selectedCarIndex != -1) {
+                Carro carroAVender = usuarioEnSesion.getCarros().get(selectedCarIndex);
+                double dineroObtenido = carroAVender.getPrecio();
+                usuarioEnSesion.getCarros().remove(selectedCarIndex);
+                actualizarJListCarros(usuarioEnSesion.getCarros());
+                usuarioEnSesion.setSaldo(dineroObtenido+usuarioEnSesion.getSaldo());
+                jL_Saldo.setText("Mi saldo: " + usuarioEnSesion.getSaldo());
+                actualizarCarrosUsuarioEnSesion();
+                JOptionPane.showMessageDialog(null, "Carro Vendido.");
+            }
+        }
+    }//GEN-LAST:event_jListCarrosMouseClicked
+
+    private void jBttn_IniciarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBttn_IniciarCarreraActionPerformed
+        Carro carro1 = (Carro) jCB_Carro1.getSelectedItem();
+        Carro carro2 = (Carro) jCB_Carros2.getSelectedItem();
+        jPB_Car1.setBackground(carro1.getColor());
+        jPB_Car2.setBackground(carro2.getColor());
+        HiloCarrera Hcar= new HiloCarrera(jPB_Car1, jPB_Car2, carro1, carro2);
+    }//GEN-LAST:event_jBttn_IniciarCarreraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -995,6 +1141,14 @@ public class Main extends javax.swing.JFrame {
         return mayus && minus && caracterEspecial;
     }
     
+    private void actualizarJListCarros(ArrayList<Carro> carros) {
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (Carro carro : carros) {
+            listModel.addElement(carro.toString());
+        }
+        jListCarros.setModel(listModel);
+    }
+    
     private Carro obtenerCarroDesdeFila(int fila) {
         String marca = jTable2.getValueAt(fila, 0).toString();
         String modelo = jTable2.getValueAt(fila, 1).toString();
@@ -1014,9 +1168,9 @@ public class Main extends javax.swing.JFrame {
     private void actualizarJListMejoras(Carro carro) {
         DefaultListModel modelo = new DefaultListModel();
 
-        ArrayList<String> mejorasVisuales = carro.getMejorasVisuales();
+        ArrayList<Partes> mejorasVisuales = carro.getMejorasVisuales();
 
-        for (String mejora : mejorasVisuales) {
+        for (Partes mejora : mejorasVisuales) {
             modelo.addElement(mejora);
         }
         jListMejoras.setModel(modelo);
@@ -1026,53 +1180,80 @@ public class Main extends javax.swing.JFrame {
         jP_IniciarSesion.setVisible(false);
         jP_CrearCuenta.setVisible(false);
         jP_CrearUsuario.setVisible(false);
-        jP_Concesionaria.setVisible(false);
         jP_Dentro.setVisible(false);
+        jP_Concesionaria.setVisible(false);
         jP_Garage.setVisible(false);
         jP_VentaCarros.setVisible(false);
+        jP_Simulacion.setVisible(false);
+        jP_ModificarUser.setVisible(false);
         jL_Iniciar.setVisible(true);
         jB_login.setVisible(true);
         jB_crear.setVisible(true);
+    }
+    
+    public void agregarCarrosalcombo(){
+        DefaultComboBoxModel<String> modeloCarrosUsuario = new DefaultComboBoxModel<>();
+
+        ArrayList<Carro> carrosUsuario = usuarioEnSesion.getCarros();
+
+        for (Carro carro : carrosUsuario) {
+            modeloCarrosUsuario.addElement(carro.getModelo());
+        }
+
+        jCB_Carro1.setModel(modeloCarrosUsuario);
+        
+        DefaultComboBoxModel<String> modeloCarrosUsuarios = new DefaultComboBoxModel<>();
+
+        AdministrarUser administrarUsuarios = new AdministrarUser("./usuarios.usr");
+        administrarUsuarios.cargarArchivo();
+        for (Usuario usuario : administrarUsuarios.getUsuarioLista()) {
+            ArrayList<Carro> carrosUsuarios = usuario.getCarros();
+
+            for (Carro carro : carrosUsuarios) {
+                modeloCarrosUsuarios.addElement(carro.getModelo());
+            }
+        }
+            jCB_Carros2.setModel(modeloCarrosUsuarios);
     }
     
     private void carrosAgrgar() { 
         AdministrarCarro ac = new AdministrarCarro("./carros.car");
         ac.cargarArchivo();
         //japon
-        ac.setCarro(new Carro("Subaru", "WR-X", Color.yellow, 100, null, "Japón", 2022, false, 0, 0, 0, null));
-        ac.setCarro(new Carro("Subaru", "Imprez", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Subaru", "BRZ", Color.BLACK, 100, null, "Japón", 2022, false, 0, 0, 0, null));
-        ac.setCarro(new Carro("Toyota", "GT-86", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Toyota", "Supra", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Honda", "Integra type-R", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Honda", "CR-X", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Subaru", "WR-X", Color.yellow, 30000, null, "Japón", 2022, false, 0, 0, 0, null));
+        ac.setCarro(new Carro("Subaru", "Imprez", Color.BLACK, 30000, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Subaru", "BRZ", Color.BLACK, 30000, null, "Japón", 2022, false, 0, 0, 0, null));
+        ac.setCarro(new Carro("Toyota", "GT-86", Color.BLACK, 30000, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Toyota", "Supra", Color.BLACK, 30000, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Honda", "Integra type-R", Color.BLACK, 30000, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Honda", "CR-X", Color.BLACK, 30000, null, "Japón", 2022, false,0, 0, 0, null));
         ac.setCarro(new Carro("Mitsubishi", "Lancer Evo", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Mitsubishi", "Mirage", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Mitsubishi", "Mirage", Color.BLACK, 30000, null, "Japón", 2022, false,0, 0, 0, null));
         ac.setCarro(new Carro("Nisan", "CR-X", Color.BLACK, 100, null, "Japón", 2022, false,0, 0, 0, null));
         
         //usa
-        ac.setCarro(new Carro("Ford", "Mustang", Color.BLACK, 100, null, "USA", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Ford", "F-150", Color.BLACK, 100, null, "USA", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Chevloret", "Camaro", Color.BLACK, 100, null, "USA", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Chevloret", "Corvette", Color.BLACK, 100, null, "USA", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Chevloret", "Bel-Hir", Color.BLACK, 100, null, "USA", 2022, true,0, 0, 0, null));
+        ac.setCarro(new Carro("Ford", "Mustang", Color.BLACK, 30000, null, "USA", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Ford", "F-150", Color.BLACK, 30000, null, "USA", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Chevloret", "Camaro", Color.BLACK, 30000, null, "USA", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Chevloret", "Corvette", Color.BLACK, 30000, null, "USA", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Chevloret", "Bel-Hir", Color.BLACK, 30000, null, "USA", 2022, true,0, 0, 0, null));
         
         //alemania
-        ac.setCarro(new Carro("BWW", "M3", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("BWW", "X6", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("BWW", "M5", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Mercedes", "", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("XW", "Beetle", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("XW", "Nordon Concept", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Audi", "R8", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Audi", " T= Coupe", Color.BLACK, 100, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("BWW", "M3", Color.BLACK, 30000, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("BWW", "X6", Color.BLACK, 30000, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("BWW", "M5", Color.BLACK, 30000, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Mercedes", "", Color.BLACK, 30000, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("XW", "Beetle", Color.BLACK, 30000, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("XW", "Nordon Concept", Color.BLACK, 30000, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Audi", "R8", Color.BLACK, 30000, null, "Alemania", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Audi", " T= Coupe", Color.BLACK, 30000, null, "Alemania", 2022, false,0, 0, 0, null));
         
         //francia
-        ac.setCarro(new Carro("Peugeot", "206", Color.BLACK, 100, null, "Francia", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Peugeot", "206", Color.BLACK, 30000, null, "Francia", 2022, false,0, 0, 0, null));
         //uk
-        ac.setCarro(new Carro("Mini", "Mini", Color.BLACK, 100, null, "UK", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Mini", "Countryman", Color.BLACK, 100, null, "UK", 2022, false,0, 0, 0, null));
-        ac.setCarro(new Carro("Volvo", "", Color.BLACK, 100, null, "Suecia", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Mini", "Mini", Color.BLACK, 30000, null, "UK", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Mini", "Countryman", Color.BLACK, 30000, null, "UK", 2022, false,0, 0, 0, null));
+        ac.setCarro(new Carro("Volvo", "", Color.BLACK, 30000, null, "Suecia", 2022, false,0, 0, 0, null));
         ac.escribirArchivo();
     }
     
@@ -1080,12 +1261,12 @@ public class Main extends javax.swing.JFrame {
         AdministrarPartes ap = new AdministrarPartes("./partes.pt");
         ap.cargarArchivo();
         ap.setParte(new Partes("Advance", "Spoiler", 25000));
-        ap.setParte(new Partes("DTM", "Rear Bumper", 100));
-        ap.setParte(new Partes("Fiberwerkz", "Front Bumper", 100));
-        ap.setParte(new Partes("Fifteen52", "Side Skirts", 100));
-        ap.setParte(new Partes("Origin Lab", "Front Fender", 100));
-        ap.setParte(new Partes("RocketBunny", "Rear Fender", 100));
-        ap.setParte(new Partes("Urban Outlaw.", "Hood", 100));
+        ap.setParte(new Partes("DTM", "Rear Bumper", 25000));
+        ap.setParte(new Partes("Fiberwerkz", "Front Bumper", 25000));
+        ap.setParte(new Partes("Fifteen52", "Side Skirts", 25000));
+        ap.setParte(new Partes("Origin Lab", "Front Fender", 25000));
+        ap.setParte(new Partes("RocketBunny", "Rear Fender", 25000));
+        ap.setParte(new Partes("Urban Outlaw.", "Hood", 25000));
         
         ap.escribirArchivo();
     }
@@ -1096,6 +1277,47 @@ public class Main extends javax.swing.JFrame {
         acct.setConcesionaria(new concesionaria("Los Japoneses", "Por Ahi", ( new ArrayList<>())));
         acct.escribirArchivo();
     }
+    
+    private void UsuarioSimulacion(){
+        Usuario usuarioSim = new Usuario("UserSim", "Usersim@gmail.com", "", "UserSimula", "UserSimula12", 200000, new Date(1, 02, 2000));
+
+        AdministrarCarro ac = new AdministrarCarro("./carros.car");
+        ac.cargarArchivo();
+
+        Carro ferrari = new Carro("Ferrari", "LaFerrari", Color.RED, 500000, null, "Italia", 2023, false, 5, 60, 100, new Circuito(HEIGHT, HAND_CURSOR, Circuito.Tipo.DRAG, "nose"));
+        Carro lamborghini = new Carro("Lamborghini", "Aventador", Color.YELLOW, 450000, null, "Italia", 2023, false, 5, 30, 100, new Circuito(HEIGHT, HAND_CURSOR, Circuito.Tipo.DRAG, "nose"));
+        ArrayList<Carro> CarrosusuarioSim=new ArrayList<>();
+        ArrayList<Partes> mejorasVisualesferrari=new ArrayList<>();
+        ArrayList<Partes> mejorasVisualeslamborghini=new ArrayList<>();
+        mejorasVisualesferrari.add(new Partes("Advance", "Spoiler", 25000));
+        mejorasVisualesferrari.add(new Partes("DTM", "Rear Bumper", 25000));
+
+        mejorasVisualeslamborghini.add(new Partes("Fiberwerkz", "Front Bumper", 25000));
+        mejorasVisualeslamborghini.add(new Partes("Fifteen52", "Side Skirts", 25000));
+        CarrosusuarioSim.add(ferrari);
+        CarrosusuarioSim.add(lamborghini);
+        
+        usuarioSim.setCarros(CarrosusuarioSim);
+        
+        AdministrarUser au = new AdministrarUser("./usuarios.usr");
+        au.cargarArchivo();
+        au.setUsuario(usuarioSim);
+        au.escribirArchivo();
+    }
+    
+    private void actualizarCarrosUsuarioEnSesion() {
+        DefaultTableModel modeloUsuario = (DefaultTableModel) jTable2.getModel();
+        modeloUsuario.setRowCount(0);
+        for (Carro carro : usuarioEnSesion.getCarros()) {
+            Object[] row = {
+                    carro.getMarca(),
+                    carro.getModelo(),
+                    carro.getYear(),
+                    carro.getPrecio()
+            };
+            modeloUsuario.addRow(row);
+        }
+    }
 
     private Usuario usuarioEnSesion;
     adminBarraInicio ab=null;
@@ -1104,20 +1326,22 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_crear;
     private javax.swing.JButton jB_login;
+    private javax.swing.JButton jBttn_IniciarCarrera;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JComboBox<String> jCB_Carro1;
+    private javax.swing.JComboBox<String> jCB_Carros2;
     private javax.swing.JComboBox<String> jCB_Carros_pais;
+    private javax.swing.JComboBox<String> jCB_TipoSimulacion;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDialog jD_Login;
     private javax.swing.JDialog jD_Menu;
     private javax.swing.JLabel jL_Iniciar;
+    private javax.swing.JLabel jL_Saldo;
     private javax.swing.JLabel jL_contra;
     private javax.swing.JLabel jL_contra2;
     private javax.swing.JLabel jL_edad;
@@ -1135,14 +1359,24 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListCarros;
     private javax.swing.JList<String> jListMejoras;
     private javax.swing.JMenuItem jMenuItem_Eliminar;
     private javax.swing.JMenuItem jMenuItem_Marca;
@@ -1151,6 +1385,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem_year;
     private javax.swing.JMenu jMenu_modificar;
     private javax.swing.JProgressBar jPB_Busca_user;
+    private javax.swing.JProgressBar jPB_Car1;
+    private javax.swing.JProgressBar jPB_Car2;
     private javax.swing.JPasswordField jPF_Password;
     private javax.swing.JPasswordField jPF_PasswordInicio;
     private javax.swing.JPanel jP_Concesionaria;
@@ -1160,6 +1396,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jP_Garage;
     private javax.swing.JPanel jP_IniciarSesion;
     private javax.swing.JPanel jP_Inicio;
+    private javax.swing.JPanel jP_InstalacionPartes;
+    private javax.swing.JPanel jP_ModificarUser;
     private javax.swing.JPanel jP_Simulacion;
     private javax.swing.JPanel jP_VentaCarros;
     private javax.swing.JPanel jPanel1;
@@ -1174,8 +1412,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jTF_pais;
     private javax.swing.JTextField jTF_usuario;
     private javax.swing.JTextField jTF_usuarioInicio;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private com.toedter.calendar.JDateChooser jd_fecha;
     // End of variables declaration//GEN-END:variables
 }
